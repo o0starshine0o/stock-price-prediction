@@ -12,7 +12,7 @@ class Mail:
         return f'id {self.id} {self.state} {self.ip} {self.address}'
 
 
-def read_mails() -> dict[Mail]:
+def read_mails() -> dict[str, Mail]:
     result = {}
     with open('maillog.txt', 'r') as f:
         for line in f.readlines():
