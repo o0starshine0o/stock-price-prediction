@@ -155,6 +155,6 @@ if __name__ == '__main__':
     # 初始化用于显示的窗口并设置窗口尺寸
     screen = pygame.display.set_mode((800, 600))
     # 设置当前窗口的标题
-    pygame.display.set_caption('collision')
+    pygame.display.set_caption('collision with quality')
 
     main()
