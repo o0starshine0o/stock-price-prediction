@@ -62,13 +62,19 @@ class Ball(pygame.sprite.Sprite):
             self.velocity.x *= -1
         if self.rect.x + self.radius * 2 >= screen.get_width() and self.velocity.x >= 0:
             self.velocity.x *= -1
-        if self.rect.y <= 0 and  self.velocity.y <= 0:
+        if self.rect.y <= 0 and self.velocity.y <= 0:
             self.velocity.y *= -1
         if self.rect.y + self.radius * 2 >= screen.get_height() and self.velocity.y >= 0:
             self.velocity.y *= -1
 
 
 def collision(ball1: Ball, ball2: Ball) -> tuple[Vector2, Vector2]:
+    """
+    两球完全弹性碰撞反弹方向问题:
+    https://blog.csdn.net/atgwwx/article/details/8486209
+    光滑均匀小球间的碰撞:
+    https://enjoyphysics.cn/Article807
+    """
     # 计算球1质心指向球2质心的矢量，即法线矢量, 并且正则化
     normal_vector = (ball1.center() - ball2.center()).normalize()
     # 法线矢量逆时针旋转90度, 获得正交向量
@@ -146,8 +152,6 @@ def main():
         pygame.display.flip()
         clock.tick(60)
 
-    pygame.quit()
-
 
 if __name__ == '__main__':
     # 初始化导入的pygame中的模块
@@ -158,3 +162,5 @@ if __name__ == '__main__':
     pygame.display.set_caption('collision with quality')
 
     main()
+
+    pygame.quit()
